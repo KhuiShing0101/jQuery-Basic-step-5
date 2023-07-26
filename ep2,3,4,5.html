@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>jquery selector</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Poppins", sans-serif;
+            }
+            html,
+            body {
+                display: grid;
+                height: 100%;
+                place-items: center;
+                background: #0d0d0d;
+            }
+            button {
+                position: relative;
+                height: 65px;
+                width: 210px;
+                margin: 0 40px;
+                font-size: 23px;
+                font-weight: 500;
+                letter-spacing: 1px;
+                border-radius: 5px;
+                text-transform: uppercase;
+                border: 1px solid transparent;
+                outline: none;
+                cursor: pointer;
+                background: #0d0d0d;
+                overflow: hidden;
+                transition: 0.6s;
+            }
+            #btn1 {
+                color: #206592;
+                border-color: #206592;
+            }#btn2 {
+                color: #206592;
+                border-color: #206592;
+            }
+            #btn3 {
+                margin-top: 20px;
+                color: #206592;
+                border-color: #206592;
+            }
+            #btn4 {
+                margin-top: 20px;
+                color: #ce5c0c;
+                border-color: #ce5c0c;
+            }
+            #btn5 {
+                margin-top: 20px;
+                color: #ce5c0c;
+                border-color: #ce5c0c;
+            }
+            #btn6{
+                margin-top: 20px;
+                color: #ce5c0c;
+                border-color: #ce5c0c;
+            }
+            #btn7{
+                margin-top: 20px;
+                color: #863aa7;
+                border-color: #863aa7;
+            }
+            #btn8{
+                margin-top: 20px;
+                color: #863aa7;
+                border-color: #863aa7;
+            }
+            #btn9{
+                margin-top: 20px;
+                color: #863aa7;
+                border-color: #863aa7;
+            }
+
+            button:before,
+            button:after {
+                position: absolute;
+                content: "";
+                left: 0;
+                top: 0;
+                height: 100%;
+                filter: blur(30px);
+                opacity: 0.4;
+                transition: 0.6s;
+            }
+            button:before {
+                width: 60px;
+                background: rgba(255, 255, 255, 0.6);
+                transform: translateX(-130px) skewX(-45deg);
+            }
+            button:after {
+                width: 30px;
+                background: rgba(255, 255, 255, 0.6);
+                transform: translateX(-130px) skewX(-45deg);
+            }
+            button:hover:before,
+            button:hover:after {
+                opacity: 0.6;
+                transform: translateX(320px) skewX(-45deg);
+            }
+            button:hover {
+                color: #f2f2f2;
+            }
+            button:hover:btn1 {
+                background: #206592;
+            }button:hover:btn2 {
+                background: #206592;
+            }button:hover:btn3 {
+                background: #206592;
+            }button:hover:btn4 {
+                background: #ce5c0c;
+            }
+            button:hover:btn5 {
+                background: #ce5c0c;
+            }
+            button:hover:btn6 {
+                background: #ce5c0c;
+            }
+            button:hover:btn7 {
+                background: #1975af;
+            }
+            button:hover:btn8 {
+                background: #1975af;
+            }
+            btn9:hover:btn9 {
+                background: #1975af;
+            }
+            .paragraph{
+                background: white;
+            }
+
+            .hide-ele{
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <ul id="list-wrapperOne">
+                <span class="item1 one" data-item="item1">one</span>
+                <span class="item2 two" data-item="item2">two</span>
+                <span class="item3 three" data-item="item3">three</span>
+                <span class="item4 four" data-item="item4">four</span>
+                <span class="item5 five" data-item="item5">five</span>
+            </ul>
+            <ul id="list-wrapper">
+                <li class="item one">one</li>
+                <li class="item two">two</li>
+                <li class="item three">three</li>
+                <li class="item four">four</li>
+                <li class="item five">five</li>
+            </ul>
+        </div>
+        
+        <p class="paragraph">
+            This paragraph contains a lot of spaces in the source code, but
+            the browser ignores it.
+        </p>
+        <div>
+                <button id="btn1" class="showbtn">Show Now !</button>
+                <button id="btn2" class="hidebtn">Hide Now !</button>
+                <button id="btn3" class="togglebtn">Toggle Now !</button>
+                <button id="btn4" class="slight-up">Slight Up !</button>
+                <button id="btn5" class="slight-down">Slight Down !</button>
+                <button id="btn6" class="slight-toggle">Slight Toggle!</button>
+                <button id="btn7" class="fade-out">Fade out!</button>
+                <button id="btn8" class="fade-in">Fade in!</button>
+                <button id="btn9" class="fade-toggle">Fade toggle!</button>
+        </div>
+    </body>
+    <script
+        src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+        crossorigin="anonymous"
+    ></script>
+    <script>
+        // $("#btn1").on('mouseenter',function(){
+        //     $(".paragraph").css("background","lightblue");
+        // });
+        // $("#btn1").on('mouseleave',function(){
+        //     $(".paragraph").css("background","Orange");
+        // })
+        // $("#btn2").on('mouseenter',function(){
+        //     $(".paragraph").css("background","lightgreen");
+        // });
+        // $("#btn2").on('mouseleave',function(){
+        //     $(".paragraph").css("background","Green");
+        // })
+        // $(".hidebtn").click(function(){
+        //     $(".paragraph").addClass('hide-ele');
+        // })
+        // $(".showbtn").click(function(){
+        //     $(".paragraph").removeClass('hide-ele');
+        // });
+        $('.togglebtn').click(function(){
+            $('.paragraph').toggleClass('hide-ele');
+        })
+        $('#btn4').click(function(){
+            $('.paragraph').slideUp();
+        })
+        $('#btn5').click(function(){
+            $('.paragraph').slideDown();
+        })
+        $('#btn6').click(function(){
+            $('.paragraph').slideToggle();
+        })
+        $('#btn7').click(function(){
+            $('.paragraph').fadeOut();
+        })
+        $('#btn8').click(function(){
+            $('.paragraph').fadeIn();
+        })
+        $('#btn9').click(function(){
+            $('.paragraph').fadeToggle();
+        })
+        // $("#btn1").click(function(){
+        //     alert("clicked")
+        // });
+        // $('li').filter('.item.two').css('border','3px solid red');
+        // $('body').find('.item','.span').css('border','3px solid red');
+        // $('span').parents().addClass('parent-box');
+        // $('span[data-item="item2"]').css("background","red");
+        // $("#container").children('span') .css('background','blue');
+        // $("#list-wrapper li").addClass("myQuery")
+        // $('.item3').siblings('.item5,.item4').css("border", "3px solid red")
+        // $('ul').children('.item2').css('background','blue');
+        // $("#list-wrapper > .item").first().css("background","blue")
+        // $("#list-wrapper > .item").last().css("background","lightblue")
+        // $("#list-wrapper > .item").eq(0).css("color","white")
+        // $("#list-wrapper > .item").eq(4).css("color","black")
+        // $("#list-wrapper > .item").eq(3).css("color","blue")
+        // $("#list-wrapper > .item").eq(2).css("color","green");
+        // $("#list-wrapper > .item").eq(1).css("color","red");
+    </script>
+</html>
